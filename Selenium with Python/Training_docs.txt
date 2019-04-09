@@ -1,0 +1,23 @@
+1. Page object model.
+2. Reading data from Excel sheet and using in selenium
+	1. Identify path for the workbook.
+	2. Identify sheet name(Sheet1 or sheet2)
+	3. Identify the column and row name on which data is present 
+	4. Get the cell value from identify row. 
+3. Frames 
+	1. Frames are in which sites get divided by the web developers.
+	2. Iframe is inside the Frame.
+	3. how we can know that website have frames or not
+		1. try to run it with normal find_element_xpath if its work than good otherwise its frame
+		2. Right click on the frame and see if you getting extra frames options for it or not
+		3. Check the inspect element for that element and check its parents contain frame or iframe or not
+		4. open inspect element and search for the xpath tag and type "//frame" or "//iframe" if yes or not
+	4. switchToFrame(index) // Its start with 0 and so no
+		
+4. Windows
+	1. Options while you working with windows
+		open with new tab
+		open with new window
+	2. Parents window(which open the first) and child window(open when we click on click on new windows.)
+	3. get Windows ID(there is basically 2 windows parents and child)
+	4. Switch to the next window
