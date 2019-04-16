@@ -1,0 +1,93 @@
+Create a MVN project for the Demo: 
+	1. Create a new folder and run below command to create a mvn project prototype
+		mvn archetype:generate 
+	-DgroupId={project-packaging}
+	-DartifactId={project-name}
+	-DarchetypeArtifactId={maven-template} 
+	-DinteractiveMode=false
+		
+		From <https://www.mkyong.com/maven/how-to-create-a-java-project-with-maven/> 
+		
+		https://dzone.com/articles/learn-how-to-setup-a-cicd-pipeline-from-scratch
+	2. Than update the pom.xml file and run below command on local machine before committing the 
+	Changes to GitHub. 
+				1) Mvn compile
+				2) Mvn test
+				3) Mvn package
+	3. Once above all commands run properly I commit all changes to the GITHUB repo to use it to jenkins. 
+				1) Git add .
+				2) Git status
+				3) Git commit -m "<Check-in Comments>"
+				4) Git push
+	4. Once all your working code is pushed to GitHub you are ready to use the Jenkin pipeline. 
+
+Install SonarQube 7.5 on machine and Configure it with Jenkin Maven project. 
+	1. Download the SonarQube latest version and unzip it and start its service by going to the bin folder.
+	2. Once the SonarQube is up and running create token for SonarQube and link the token with the Jenkins. 
+	3. Go to Jenkins --> Manage jenkins  --> Configure system --> check for "SonarQube Servers "
+				1) Tick the Environment Variables option "Enable injection of SonarQube server configuration as build environment varaibles"
+				2) SonarQube Installations: Name, Server URL, Server Authentication token(which is coming from the SonarQube token generation)
+	4. Once all basic Global Configuration is done. Follow the below step to setup SonarQube with Jenkin pipeline in a job. 
+				1) If you are using, maven then first tick the "prepare SonarQube Scanner environment" under Build Environment option. 
+				2) Under the Build. Select "invoke top-level Maven targets" and type below command in the goals. 
+						i)  $SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL
+				3) Once everything is setup, run the job and see the SonarQube Analysis on the SonarQube. 
+
+Tools Used:  Jenkin, Maven, Docker, GitHub, JAVA JDK
+
+Steps: 
+	1. Setup Jenkins on your local machine on port  8080. and install required plugins. 
+	2. Find a Java project github repo for the demo. 
+		a. Use this repo. 
+			i. https://github.com/g0t4/jenkins2-course-spring-boot/tree/master/spring-boot-samples/spring-boot-sample-atmosphere
+			ii. Clone it to the local machine in one folder. 
+	3. Download Maven on the machine. And open the repo folder in the machine and run below mvn commands to compile and run the application;
+			i. Mvn compile: use to compile the java project
+				1) Error Faced During this command: 
+				no compiler is provided in this environment. perhaps you are running on a jre rather than a jdk?
+				Solution: 
+				Install The Java JDK on the machine 
+				set the Environment variable JAVA_HOME with the installed JDK path. 
+				Run the mvn compile command again. It will work. 
+			ii. Mvn test: Use to test the java project
+				1) Error Faced During this command: 
+				The forked VM terminated without saying properly goodbye. VM crash or System.exit called
+				Solution: 
+				Unable to find the solution for this. So delete the test case.
+			iii. Mvn package:  it will create a jar package which is ready for deployment. It is work as same like Nunit or Nugut package in ASP.net
+				If mvn compile and test is successful than mvn package will also get success. 
+				Under the target folder you will find one jar file which is result of the mvn package.
+	4. Open the jenkin and create a new job for CI. 
+		a. Create job. 
+		b. In Source Code repository --> Select git --> put the Github path 
+		c. In Build --> select 
+			"invoke top-level Maven targets" -->  in Goal type "Compile/Test/package" command which we use for 
+			Local development
+			Note:  you might need to give the pom.xml file proper path after the repo path. Make sure you give proper path. 
+
+
+
+Docker installation on VM : 
+
+https://stackoverflow.com/questions/43917034/docker-on-windows-server-2012r2
+Install-Module DockerMsftProvider -Force
+Install-Package Docker -ProviderName DockerMsftProvider -Force
+
+
+Jenkin Note: 
+	1. Challenge and importing Job Config.xml files 
+		a. Go to : Jenkins folder which is under the programs files(x86)/jenkins/jobs/  you will see the all jobs names in form of folder. 
+		b. If you want to configure new job without using the UI part. You can achieve this by doing some changes here. 
+		c. Copy and paste one job name and rename the new job name. 
+		d.  Go to: Jenkins --> Manage Jenkins --> Reload configuration from disk. 
+		e. The above step help you the get the jobs from the folder. You will be able to see new job on the Jenkin Dashboard. 
+		f. If you ever face any issue while above step( Like if you running the jenkin with Different user and other user) to  check logs please follow below step: 
+			i. Jenkins --> Manage Jenkins --> System logs -->  All Jenkins logs --> search for the new Job name (you will get all logs for that job here)
+
+
+echo "# Learning" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/AnupKumarMishra86/Learning.git
+git push -u origin master
