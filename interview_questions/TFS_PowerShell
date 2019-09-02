@@ -1,0 +1,12 @@
+TFS Interview Questions: 
+  1. Difference Between Area and Iteration in TFS. 
+  2. What is burndown chat on TFS dashboard. 
+  3. what is IIS servers on agents or deployment machine. 
+  4. where we can see TFS build agents capabilities on TFS. 
+  5. What are the branching strategies on TFS. 
+  6. How we can manage Configuration variables while deployments. (DB, configuration file)
+  7. Deployment scripts for IIS servers and what they are doing. 
+  8. Kind of PowerShell scripts you write so far and what they are doing. 
+  9. What kind of Access you need to create Area/iteration on TFS. 
+  10. How you give access to Devlopers on TFS for branch. (manually buy creating TFS group, via PowerShell script and than create a build)
+  11. How to use WIT(work item type) on TFS and how to modified it. 
