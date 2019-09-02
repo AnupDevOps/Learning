@@ -1,0 +1,54 @@
+1. What is the name of the new service built on top of Service Fabric that offers a serverless model for hosting containerized microservices?
+Answer: Service Fabric mesh. 
+2. What is the name of the new service built on top of Service Fabric that offers a serverless model for hosting containerized microservices?
+Answer: An instance of an application created from a Docker image
+3. What kubectlubectl command allows you to deploy or update an application defined in myapp.yaml ?
+answer: kubectl
+apply -f myapp.yaml
+4. What Docker command allows us to execute a command inside a running container?
+Answer: docker exec
+5. Which Dockerfile instruction indicates what base image to use?
+Answer: FROM
+6. What Docker command can be used to build an image from a Dockerfile?
+Answer : docker build
+7. What is the name of the ACI connector that allows it to provide elastic scale to a Kubernetes cluster?
+Answer: Virtual Kubelet
+8. What is the name of the microservice application platform used to host many Microsoft services including Azure SQL, Cosmos DB and Skype for Business?
+Answer : Service Fabric
+9. Which Azure CLI command allows you to deploy an application to Service Fabric Mesh using an ARM template?
+Answer: az mesh deployment create
+10. What is is called when an orchestrator decides on which nodes to run containers?
+Answer : Scheduling
+11. What is the name of a popular open source package manager for Kubernetes?
+Answer: Helm
+12. What Azure service lets you store private container images?
+Answer: Azure Container Registry
+13. What Docker command allows us to create a new container from an image?
+Answer: docker run
+14. Which example docker run command uses the correct syntax to set an environment variable?
+Answer: docker run -e Name=Value imagename
+15. What Azure Container Instances feature makes it unique compared to most other container hosting services?
+Answer: It has a serverless per-second billing model
+16. What service is Web App for Containers based on top of?
+Answer: Azure App Service
+17. What is the name of the private container image registry that can be used to securely host container images in Azure?
+Answer: Azure Container Registry
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
