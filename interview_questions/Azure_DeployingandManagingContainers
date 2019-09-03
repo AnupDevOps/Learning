@@ -34,6 +34,59 @@ Answer: Azure App Service
 17. What is the name of the private container image registry that can be used to securely host container images in Azure?
 Answer: Azure Container Registry
 
+1.Docker build is run by
+A: Docker daemon
+2. Docker builds the image using the context which is
+A: All the files found in a specific path or URL. 
+3. It is OK to use root directory such as / as the PATH for building the docker image
+A: False
+4. Which of the following option is used to specify a repository and a tag for saving the image after the build is done
+A: -t
+5. Docker image can be saved in multiple repositories after the build is done
+A: True
+6. A Dockerfile can start with any command
+A: False
+7. A docker file must be named as Dockerfile
+A: False
+8. FROM keyword can only appear once at the start of the Dockerfile
+A: False
+9. It is OK to have more than one RUN instruction in the Docker file
+A: True
+10. Both RUN and CMD instruction can be used interchangeably in the Dockerfile as they do the similar thing
+A: false
+11. It is OK to have more than one CMD instruction in the Docker file
+A: False
+12. Which of the following instruction can primarily be used for defining default arguments for an ENTRYPOINT command
+A: CMD
+13. Which of the following instruction can be used to inform Docker that containers listen on specific ports?
+A: EXPOSE
+14. Which of the following instruction actually runs a command and commits the result during the time of building the image
+A: RUN
+15. Which of the following can be used to define what command gets executed when running a container
+A: CMD and ENTRYPOINT
+16. Which of the following instructions can be used to specify variables that are available to the RUN instruction
+A: ARG and ENV
+17. ARG variables are persisted into the built image as like the ENV variables
+A: False
+
+It is recommended to start with an empty directory as context and keep the Dockerfile in that directory along with files which are required for building the image.
+The following is done as part of the docker build command:
+The context (files from current directory) is sent to Docker daemon
+Dockerfile syntax is parsed and checked for validity
+Each instruction in Dockerfile is executed resulting in creation of new images as layers
+After successful build, an image ID is returned by Docker daemon
+The context is cleared/deleted/cleaned up.
+A Dockerfile must start with FROM instruction, if not ARG
+RUN instruction actually runs a command and commits the result
+CMD instruction does not execute anything at build time of an image. It should be used as a way of defining default arguments for an ENTRYPOINT instruction or for executing an ad-hoc command in a container.
+
+
+Interview Questions
+Why is it recommended to start building the docker image with an empty directory consisting of docker file and relevant files required for building the image?
+Is this OK to use more than one FROM in a Dockerfile? Why would one want to have more than one FROM in the same Dockerfile?
+What is the difference between RUN and CMD command used in the Dockerfile?
+How can CMD and ENTRYPOINT command be used together?
+
 
 
 
