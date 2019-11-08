@@ -1,0 +1,174 @@
+Jenkin is core tool after Developer make change in Git till the deployment. 
+
+Developer made changes --> GitHub --> Maven/Ant Build --> Generate the Jar/WAR --> Deploy the JAR/WAR file --> test the Deploy JAR/WAR --> If everything is Fine --> merge the Code to Stable branch
+and Repeat the same steps for Stable/Staging Branch. 
+
+If everything is not fine --> jenkins will send a mail to Developer to look for the Build error. 
+
+Jekins Installation Guide 
+
+Jenkins can also will be avaiable to Run in Tomcat. You just need to download the Jenkin.war file and deploy it in the Tomcat. 
+
+On Windows. 
+
+1. Download the Jenkins and install on the software. 
+2. Install the Jekinks in D folder only. 
+3. You might face below error.
+	"An error occurred during installation: No such plugin: cloudbees-folder"
+Fix: Close all Jenkins open files and Restart the jenkins and try again. 
+4. Restart the service after installation.
+5. Run the localhost:8080 
+6. Type the Admin password. Which is there in the folder which suggested by the UI
+7. Install the suggested plugins that Jenkins suggest. 
+8. Wait till all suggested plugins get installed. 
+9. After Installation is complete. Create First Admin User.
+	anup_mishra	Jekin@123
+10. Restart the service and run localhost:8080 again and login with your admin rights. 
+11. Jenkin is ready for use. 
+ 
+On ubuntu Linux machine on AWS machine.
+
+Search on google for install jenkins on Ubuntu and follow steps that mentioned on jenkins.io
+
+wget -q -0 - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+deb https://pkg.jenkins.io/debian binary/
+sudo apt-get update
+sudo apt-get install jenkins
+
+services jenkins start
+ Install Java before Installing Jenkins. 
+update the $PATH with the actual JDK path. 
+Type the Admin password. Which is there in the folder which suggested by the UI
+Install the suggested plugins that Jenkins suggest. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Second Day
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Create New Job --> freestyle poject --> Name the Project --> Check Out the GitHub Command --> Build with Ant and maven
+--> copy the JAR/WAR file to Tomcat for deployment. 
+
+For Linux User:
+Create a user called Jenkins for the Jenkins communication
+Go to the folder and than create a Key pair for the user.
+use the key pair to connect the GitHub. 
+Goto GitHub --> Project (You want to build) --> Setting --> Deploy Key --> Copy paste the Key pair --> allow him to read access only. 
+
+For Window user: 
+
+Add the GitHub path along with add username and password for GitHub as well. By Default it will check-out the master branch. 
+
+Add System Environment path for all the installed tools. 
+Go to jenkins -->configuration --> global tool configuration --> Add the path for JDK, GIT, Maven, ANT here so that jenkins understand how to use this configuration and run their commands. 
+
+
+
+Install Tomcat on same machine in Linux.
+
+Change the server.xml for port number called connector port to another one as Jenkins on running on same port. 
+Start the Tomcat on the machine. 
+
+
+COPY "D:\jenkins-2.164.2\workspace\Java_Sample_project\java-project\target\gs-maven-0.1.0-shaded.jar" "D:\Java_sample_project\apache-tomcat-8.5.40\apache-tomcat-8.5.40\webapps"
+
+Will Work. But here is the problem. 
+
+We cannot deploy JAR file to Tomcat server, we only can deploy WAR file. So to change the JAR to WAR I change the file type in pom.xml but its failed on Jenkins. 
+We need to create web.xml to create the WAR file. 
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Third day
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Archive give you option to keep some artificate on the build machine. 
+
+Discard old build -> keep last 3 successful build in case of roll back.
+
+parameterize build --> Put the varaible $(Branch) --> It will ask you branch name before any build. 
+
+Throttle builds. --> Number of builds can run at same time. 
+
+Execute Concurrent builds if necessory --> means 2 jobs can run at some time. 
+
+Build Triggers
+1. Trigger Build Remotely (From Scripts)
+	It will give you link which you can use to trigger the build. 
+Post the URL which Jenkin job will provide you.
+3. Build Periodically 
+	0****
+4. Poll SCM --Similar to build Periodically, But it check version of GitHub, If there is a change than only build the solution. 
+	Rest is same as Build Periodically
+
+Build Environment
+1. Delete workspace before Build starts
+Explained all
+
+Post-Build Actions.
+Explained all
+Features like Email Notificarion, Finger print of all Jobs.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fourth day
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Jenkins Master Shalve concept:
+master (It is machine where jenkin is actually installed) --> Shalve (You need to install agents on this machine to act as shalve)
+We do not need to install Jenkins on Shalve, we install only on master.
+Manage Jenkins --> Manage Nodes --> New Node --> Node Name --> Ok 
+--> You can connect with ssh --> Copy the Public key from Master to Shalve for Linux
+--> Use the same user for master and Shalve --> Remote root Directory 
+--> Labels(like you can label multiple Shalve machine in one Label) 
+--> Launch agent via SSH --> Enter Public IP in Host button --> Use the same user in the shalve
+--> we do not host key verification --> click on Advance --> to see more options for your Shalve machine
+--> keep this agent online as much as possible. --> Set Environment variables --> as you alreadt mentioned 
+in the global Environment variables. (but if you want to overwrite those Environment variable than put here as)
+--> save
+
+master machine take some time to setup the Shalve machine. 
+You can click on the Shelve machine and see the console log what master machine is doing on your Shalve machine.
+
+
+Shalve Machine Software need to be installed. 
+JDK and its path need to be updated in the environment variables.  
+
+to Download JDK on shalve use below commands. 
+1. wget "Download_url"
+2. tar -xzvf "File Name"
+3. Set the Environment variable.  till bin/ folder.
+
+
+only Shalve machine is done. 
+Once its done go to old job and modified it 
+look for option " restrict where this project can be run" 
+and type the label which you given or you can also use master for sure. 
+
+Install Tomcat on one server. 
+
+Use the Scp command to copy the .WAR file from jenkins to the tomcat machine/WebApps folder for deployment. 
+
+For load Sharing we are using master Shalve Concept. It will help you to host 5 6 Application on one machine.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fifth day
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Release and Multi Project using Maven 
+
+Nothing much there. Just repeat the whole process again by using the Maven and Jenkins. 
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sixth day
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
